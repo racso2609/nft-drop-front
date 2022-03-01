@@ -1,39 +1,20 @@
-import React, { useContext } from "react";
-import DropFactoryContract from "./Contracts/NftDrop.json";
-import WalletContext from "./context/Wallet";
+import React from "react";
+import {Routes,Route} from 'react-router-dom';
+import  Main from './views/Main';
+import DropInfo from './views/DropInfo';
+
 import "./App.css";
-
-const ConnectWalletButton = () => {
-  const { connectWalletHandler } = useContext(WalletContext);
-
-  return (
-    <button
-      onClick={connectWalletHandler}
-      className="cta-button connect-wallet-button"
-    >
-      Connect Wallet
-    </button>
-  );
-};
-
-const MintNftButton = () => {
-  const mintNftHandler = () => {};
-
-  return (
-    <button onClick={mintNftHandler} className="cta-button mint-nft-button">
-      Mint NFT
-    </button>
-  );
-};
+//:TODO: update contract to be able to edit drop info, and add a mapping to get al related nftId to the mint
 
 function App() {
-  const { currentAccount } = useContext(WalletContext);
 
   return (
-    <div className="main-app">
-      <h1>Nft Drop Factory</h1>
-      {currentAccount ? <MintNftButton /> : <ConnectWalletButton />}
-    </div>
+    <>
+    <Routes>
+      <Route element={<Main/>} path="/" />
+      <Route element={<DropInfo/>} exact path="/drops/:dropId" />
+    </Routes>
+    </>
   );
 }
 

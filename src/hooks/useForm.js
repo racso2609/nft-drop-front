@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function useForm({ defaultValue, type }) {
+function useForm({ defaultValue, type, placeholder, max, min }) {
   const [value, setValue] = useState(defaultValue || "");
 
   const onChangeFile = (e) => {
@@ -17,7 +17,7 @@ function useForm({ defaultValue, type }) {
   };
   const onChange = (e) => {
     const onChangeFn = onChangeHandler[type];
-    if (!onChange) onChangeText(e);
+    if (!onChangeFn) return onChangeText(e);
     onChangeFn(e);
   };
 
@@ -25,6 +25,9 @@ function useForm({ defaultValue, type }) {
     type,
     value,
     onChange,
+    placeholder,
+    max,
+    min,
   };
 }
 

@@ -5,11 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { DropFactoryProvider } from "./context/DropFactory";
 import { WalletProvider } from "./context/Wallet";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <WalletProvider>
     <DropFactoryProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </DropFactoryProvider>
   </WalletProvider>,
   document.getElementById("root")
