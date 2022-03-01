@@ -75,6 +75,16 @@ export function DropFactoryProvider({ children }) {
       alert(error.message);
     }
   };
+  const revealDrop = async(dropId) => {
+    try {
+      const tx = await dropFactory.defineDrop(dropId);
+      console.log("loading...");
+      await tx.wait();
+      alert("drop revealed" + tx.hash);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <DropFactoryContext.Provider
@@ -87,6 +97,7 @@ export function DropFactoryProvider({ children }) {
         totalDrops,
         getDropById,
         mintDrop,
+    revealDrop
       }}
     >
       {children}
